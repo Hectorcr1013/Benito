@@ -10,4 +10,6 @@ package mx.itson.benito.entidades;
  */
 public class Proveedor {
     
+    
+    
 }
