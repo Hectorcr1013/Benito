@@ -5,14 +5,33 @@
 package mx.itson.benito.entidades;
 
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Hector
  */
+@Entity
+@Table()
 public class Articulo {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
+    //Cardinalidad 1:N
+    @OneToMany (cascade = CascadeType.MERGE)
+    @JoinTable(name = "rel_articulo_proveedor",
+            joinColumns = {@JoinColumn(name = "idArticulo")},
+            inverseJoinColumns = {@JoinColumn(name = "idProveedor0")})
     private List<Proveedor> proveedores;
     private double precio;
     private String nombre;

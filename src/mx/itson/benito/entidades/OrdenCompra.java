@@ -6,14 +6,21 @@ package mx.itson.benito.entidades;
 
 import java.util.Date;
 import java.util.List; 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import mx.itson.benito.enumeradores.Estado;
 
 /**
  *
  * @author Hector
  */
+@Entity
 public class OrdenCompra {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Date fecha;
     private double subtotal;
