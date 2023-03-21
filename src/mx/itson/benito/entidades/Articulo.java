@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -27,8 +27,8 @@ public class Articulo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    //Cardinalidad 1:N
-    @OneToMany (cascade = CascadeType.MERGE)
+    //Cardinalidad N:N
+    @ManyToMany (cascade = CascadeType.MERGE)
     @JoinTable(name = "rel_articulo_proveedor",
             joinColumns = {@JoinColumn(name = "idArticulo")},
             inverseJoinColumns = {@JoinColumn(name = "idProveedor0")})

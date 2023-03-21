@@ -6,10 +6,15 @@ package mx.itson.benito.entidades;
 
 import java.util.Date;
 import java.util.List; 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import mx.itson.benito.enumeradores.Estado;
 
 /**
@@ -22,11 +27,16 @@ public class OrdenCompra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     private double subtotal;
     private double total;
+    @OneToMany(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "idArticulos")
     private List<Articulo> articulos;
     private Estado estado;
+    @OneToMany(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "idProveedores")
     private List<Proveedor> proveedores;
     private String folio;
     
