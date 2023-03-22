@@ -45,11 +45,9 @@ public class OrdenCompraDAO {
      * @param articulos
      * @param fecha
      * @param cantidad
-     * @param subtotal
-     * @param total
      * @return 
      */
-    public static boolean guardar(List<Proveedor> proveedor, String folio, List<Articulo> articulos, Date fecha, int cantidad, double subtotal, double total) {
+    public static boolean guardar(List<Proveedor> proveedor, String folio, List<Articulo> articulos, Date fecha, int cantidad) {
         boolean resultado = false;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -61,8 +59,6 @@ public class OrdenCompraDAO {
             c.setArticulos(articulos);
             c.setFecha(fecha);
             c.setCantidad(cantidad);
-            c.setSubtotal(subtotal);
-            c.setTotal(total);
 
             session.save(c);
 
@@ -101,7 +97,7 @@ public class OrdenCompraDAO {
      * @param cantidad
      * @return 
      */
-    public static boolean editar(int id, List<Proveedor> proveedor, String folio, List<Articulo> articulos, Date fecha, int cantidad, double subtotal, double total){
+    public static boolean editar(int id, List<Proveedor> proveedor, String folio, List<Articulo> articulos, Date fecha, int cantidad){
         boolean resultado = false;
         try {
             Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -114,8 +110,6 @@ public class OrdenCompraDAO {
                 c.setArticulos(articulos);
                 c.setFecha(fecha);
                 c.setCantidad(cantidad);
-                c.setSubtotal(subtotal);
-                c.setTotal(total);
                 
                 session.saveOrUpdate(c);              
                 session.getTransaction().commit();

@@ -4,19 +4,51 @@
  */
 package mx.itson.benito.ui;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import mx.itson.benito.entidades.Articulo;
+import mx.itson.benito.entidades.Proveedor;
+import mx.itson.benito.persistencias.ArticuloDAO;
+import mx.itson.benito.persistencias.ProveedorDAO;
+
 /**
  *
  * @author Hector
  */
 public class FormularioProveedor extends javax.swing.JDialog {
 
+    int id = 0;
+    
     /**
      * Creates new form FormularioProveedor
      */
     public FormularioProveedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.id = id;
+
+        if (id != 0) {
+            Proveedor proveedor = new Proveedor();
+
+            txfClave.setText(proveedor.getClave());
+            txfNombre.setText(proveedor.getNombre());
+            txfDireccion.setText(proveedor.getDireccion());
+            txfTelefono.setText(proveedor.getTelefono());
+            txfCorreo.setText(proveedor.getCorreo());
+            cbxArticulos.getSelectedItem();
+        }
+
+        cargarArticulos();
     }
+    
+    public void cargarArticulos() {
+        List<Articulo> articulos = ArticuloDAO.obtenerTodos();
+        for (Articulo a : articulos) {
+            cbxArticulos.addItem(a.getNombre());
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,21 +59,168 @@ public class FormularioProveedor extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txfNombre = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        txfDireccion = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        txfClave = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
+        txfTelefono = new javax.swing.JTextField();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
+        txfCorreo = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        cbxArticulos = new javax.swing.JComboBox<>();
+        btnGuardar = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Proveedor");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 39));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Nombre:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 60, 30));
+
+        txfNombre.setBackground(new java.awt.Color(255, 255, 255));
+        txfNombre.setForeground(new java.awt.Color(0, 0, 0));
+        txfNombre.setBorder(null);
+        jPanel1.add(txfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 240, 30));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 240, 10));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Dirección:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 60, 30));
+
+        txfDireccion.setBackground(new java.awt.Color(255, 255, 255));
+        txfDireccion.setForeground(new java.awt.Color(0, 0, 0));
+        txfDireccion.setBorder(null);
+        jPanel1.add(txfDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 240, 30));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 240, 10));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Clave:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 60, 30));
+
+        txfClave.setBackground(new java.awt.Color(255, 255, 255));
+        txfClave.setForeground(new java.awt.Color(0, 0, 0));
+        txfClave.setBorder(null);
+        jPanel1.add(txfClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 240, 30));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 240, 10));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Telefono:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 60, 30));
+
+        txfTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        txfTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        txfTelefono.setBorder(null);
+        jPanel1.add(txfTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 240, 30));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 240, 10));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Correo:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 60, 30));
+
+        txfCorreo.setBackground(new java.awt.Color(255, 255, 255));
+        txfCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txfCorreo.setForeground(new java.awt.Color(0, 0, 0));
+        txfCorreo.setBorder(null);
+        jPanel1.add(txfCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 240, 30));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, 240, 10));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Articulos:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, 60, 30));
+
+        jPanel1.add(cbxArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 500, 240, 30));
+
+        btnGuardar.setBackground(new java.awt.Color(153, 153, 153));
+        btnGuardar.setPreferredSize(new java.awt.Dimension(120, 50));
+        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseClicked(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Guardar");
+
+        javax.swing.GroupLayout btnGuardarLayout = new javax.swing.GroupLayout(btnGuardar);
+        btnGuardar.setLayout(btnGuardarLayout);
+        btnGuardarLayout.setHorizontalGroup(
+            btnGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+        );
+        btnGuardarLayout.setVerticalGroup(
+            btnGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 600, 120, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
+        
+        try {
+            String clave = txfClave.getText();
+            String nombre = txfNombre.getText();
+            String direccion = txfDireccion.getText();
+            String telefono = txfTelefono.getText();
+            String correo = txfCorreo.getText();
+            Articulo articulo = (Articulo) cbxArticulos.getSelectedItem();
+            System.out.println("El conductor seleccionado es: " + articulo.getId());
+
+            boolean resultado = this.id == 0
+                    ? ProveedorDAO.guardar(clave, nombre, direccion, telefono, correo, (List<Articulo>) articulo)
+                    : ProveedorDAO.editar(id, clave, nombre, direccion, telefono, correo, (List<Articulo>) articulo);
+
+            if (resultado) {
+                JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro guardado", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "El registro se edito con exito", "Registro guardado", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btnGuardarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -86,5 +265,26 @@ public class FormularioProveedor extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel btnGuardar;
+    private javax.swing.JComboBox<String> cbxArticulos;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JTextField txfClave;
+    private javax.swing.JTextField txfCorreo;
+    private javax.swing.JTextField txfDireccion;
+    private javax.swing.JTextField txfNombre;
+    private javax.swing.JTextField txfTelefono;
     // End of variables declaration//GEN-END:variables
 }

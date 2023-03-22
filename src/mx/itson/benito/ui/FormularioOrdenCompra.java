@@ -37,14 +37,14 @@ public class FormularioOrdenCompra extends javax.swing.JDialog {
     public void cargarProveedores() {
         List<Proveedor> proveedores = ProveedorDAO.obtenerTodos();
         for (Proveedor p : proveedores) {
-            cbxProveedor.addItem(p);
+            cbxProveedor.addItem(p.getNombre());
         }
     }
     
     public void cargarArticulos() {
         List<Articulo> articulos = ArticuloDAO.obtenerTodos();
         for (Articulo a : articulos) {
-            cbxArticulo.addItem(a);
+            cbxArticulo.addItem(a.getNombre());
         }
     }
 
@@ -72,10 +72,6 @@ public class FormularioOrdenCompra extends javax.swing.JDialog {
         cbxProveedor = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         cbxEstado = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
-        lblSubtotal = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        lblTotal = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         spnCantidad = new javax.swing.JSpinner();
@@ -143,26 +139,9 @@ public class FormularioOrdenCompra extends javax.swing.JDialog {
         jLabel7.setText("Estado:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, 70, 30));
 
+        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abierta", "Cerrada", "Cancelada" }));
         cbxEstado.setToolTipText("");
         jPanel1.add(cbxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 230, 30));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Subtotal:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 70, 30));
-
-        lblSubtotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblSubtotal.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(lblSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 560, 90, 30));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Total:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 560, 50, 30));
-
-        lblTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTotal.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 560, 100, 30));
 
         btnGuardar.setBackground(new java.awt.Color(153, 153, 153));
         btnGuardar.setForeground(new java.awt.Color(153, 153, 153));
@@ -214,13 +193,11 @@ public class FormularioOrdenCompra extends javax.swing.JDialog {
             List<Articulo> articulo =(List<Articulo>) cbxArticulo.getSelectedItem();
             Date fecha = new SimpleDateFormat("yyyy-MM-d", Locale.ENGLISH).parse(txfFecha.getText());
             int cantidad = (int) spnCantidad.getValue();
-            double subtotal = Double.parseDouble(lblSubtotal.getText());
-            double total = Double.parseDouble(lblTotal.getText());
             
             boolean resultado = this.id == 0 ?
             
-            OrdenCompraDAO.guardar(proveedor, folio, articulo, fecha, cantidad, subtotal, total):
-            OrdenCompraDAO.editar(id, proveedor, folio, articulo, fecha, cantidad, subtotal, total);
+            OrdenCompraDAO.guardar(proveedor, folio, articulo, fecha, cantidad):
+            OrdenCompraDAO.editar(id, proveedor, folio, articulo, fecha, cantidad);
             
         if(resultado){
             JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro guardado", JOptionPane.INFORMATION_MESSAGE);
@@ -277,9 +254,9 @@ public class FormularioOrdenCompra extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnGuardar;
-    private javax.swing.JComboBox<Articulo> cbxArticulo;
-    private javax.swing.JComboBox<Estado> cbxEstado;
-    private javax.swing.JComboBox<Proveedor> cbxProveedor;
+    private javax.swing.JComboBox<String> cbxArticulo;
+    private javax.swing.JComboBox<String> cbxEstado;
+    private javax.swing.JComboBox<String> cbxProveedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -288,13 +265,9 @@ public class FormularioOrdenCompra extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lblSubtotal;
-    private javax.swing.JLabel lblTotal;
     private javax.swing.JSpinner spnCantidad;
     private javax.swing.JTextField txfFecha;
     private javax.swing.JTextField txfFolio;

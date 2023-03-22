@@ -45,9 +45,10 @@ public class ProveedorDAO {
      * @param direccion
      * @param telefono
      * @param correo
+     * @param articulos
      * @return 
      */
-    public static boolean guardar(String clave, String nombre, String direccion, String telefono, String correo){
+    public static boolean guardar(String clave, String nombre, String direccion, String telefono, String correo, List<Articulo> articulos){
         boolean resultado = false;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -59,6 +60,7 @@ public class ProveedorDAO {
             p.setDireccion(direccion);
             p.setTelefono(telefono);
             p.setCorreo(correo);
+            p.setArticulos(articulos);
             
             session.save(p);
             
@@ -95,23 +97,25 @@ public class ProveedorDAO {
      * @param direccion
      * @param telefono
      * @param correo
+     * @param articulos
      * @return 
      */
-    public static boolean editar(int id, String clave, String nombre, String direccion, String telefono, String correo){
+    public static boolean editar(int id, String clave, String nombre, String direccion, String telefono, String correo, List<Articulo> articulos){
         boolean resultado = false;
         try {
             Session session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.beginTransaction();
             
-            Proveedor proveedor = obtenerPorId(id);
-            if(proveedor != null){
-                proveedor.setClave(clave);
-                proveedor.setNombre(nombre);
-                proveedor.setDireccion(direccion);
-                proveedor.setTelefono(telefono);
-                proveedor.setCorreo(correo);
+            Proveedor p = obtenerPorId(id);
+            if(p != null){
+                p.setClave(clave);
+                p.setNombre(nombre);
+                p.setDireccion(direccion);
+                p.setTelefono(telefono);
+                p.setCorreo(correo);
+                p.setArticulos(articulos);
                 
-                session.saveOrUpdate(proveedor);              
+                session.saveOrUpdate(p);              
                 session.getTransaction().commit();
                 resultado = true;
             }

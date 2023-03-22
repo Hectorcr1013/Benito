@@ -50,7 +50,7 @@ public class FormularioArticulo extends javax.swing.JDialog {
         cbxProveedor.removeAllItems();
         
         for(Proveedor p: proveedores){
-            cbxProveedor.addItem(p);
+            cbxProveedor.addItem(p.getNombre());
         }
     }
 
@@ -271,7 +271,7 @@ public class FormularioArticulo extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnGuardar;
-    private javax.swing.JComboBox<Proveedor> cbxProveedor;
+    private javax.swing.JComboBox<String> cbxProveedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
