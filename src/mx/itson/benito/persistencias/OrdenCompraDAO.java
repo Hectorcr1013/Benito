@@ -4,10 +4,147 @@
  */
 package mx.itson.benito.persistencias;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.criteria.CriteriaQuery;
+import mx.itson.benito.entidades.*;
+import mx.itson.benito.utilerias.HibernateUtil;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+
 /**
  *
  * @author Hector
  */
 public class OrdenCompraDAO {
+    
+    /**
+     * 
+     * @return 
+     */
+    public static List<OrdenCompra> obtenerTodos() {
+        List<OrdenCompra> Ordencompra = new ArrayList<>();
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            CriteriaQuery<OrdenCompra> criteriaQuery
+                    = session.getCriteriaBuilder().createQuery(OrdenCompra.class);
+            criteriaQuery.from(OrdenCompra.class);
+
+            Ordencompra = session.createQuery(criteriaQuery).getResultList();
+        } catch (Exception ex) {
+            System.err.println("Ocurrio un error" + ex.getMessage());
+        }
+        return Ordencompra;
+    }
+    
+    /**
+     * 
+     * @param proveedores
+     * @param folio
+     * @param articulos
+     * @param fecha
+     * @param cantidad
+     * @return 
+     */
+    public static boolean guardar(List<Proveedor> proveedores, String folio, List<Articulo> articulos, Date fecha, int cantidad) {
+        boolean resultado = false;
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            OrdenCompra c = new OrdenCompra();
+            c.setProveedores(proveedores);
+            c.setFolio(folio);
+            c.setArticulos(articulos);
+            c.setFecha(fecha);
+            c.setCantidad(cantidad);
+
+            session.save(c);
+
+            session.getTransaction().commit();
+
+            resultado = c.getId() != 0;
+        } catch (Exception ex) {
+            System.err.println("Ocurrio un error" + ex.getMessage());
+        }
+        return resultado;
+    }
+
+    /**
+     * 
+     * @param id
+     * @return 
+     */
+    public static OrdenCompra obtenerPorId(int id) {
+        OrdenCompra ordenCompra = null;
+        try {
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            ordenCompra = session.get(OrdenCompra.class, id);
+        } catch (HibernateException ex) {
+            System.err.println("Ocurrio un error: " + ex.getMessage());
+        }
+        return ordenCompra;
+    }
+    
+    /**
+     * 
+     * @param id
+     * @param proveedores
+     * @param folio
+     * @param articulos
+     * @param fecha
+     * @param cantidad
+     * @return 
+     */
+    public static boolean editar(int id, List<Proveedor> proveedores, String folio, List<Articulo> articulos, Date fecha, int cantidad){
+        boolean resultado = false;
+        try {
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session.beginTransaction();
+            
+            OrdenCompra compra = obtenerPorId(id);
+            if(compra != null){
+                compra.setProveedores(proveedores);
+                compra.setFolio(folio);
+                compra.setArticulos(articulos);
+                compra.setFecha(fecha);
+                compra.setCantidad(cantidad);
+                
+                session.saveOrUpdate(compra);              
+                session.getTransaction().commit();
+                resultado = true;
+            }
+        } catch (HibernateException ex) {
+            System.err.println("Ocurrio un error: " + ex.getMessage());
+        }
+        return resultado;
+    }
+    
+    /**
+     * 
+     * @param id
+     * @return 
+     */
+    public static boolean eliminar(int id){
+        boolean resultado = false;
+        try {
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session.beginTransaction();
+            
+            OrdenCompra ordenCompra = obtenerPorId(id);
+            ordenCompra.getId();
+            
+            if(ordenCompra != null){
+                session.delete(ordenCompra);
+                HibernateUtil.getSessionFactory().getCurrentSession().delete(ordenCompra);
+                session.getTransaction().commit();
+                resultado = true;
+            }
+        } catch (HibernateException ex) {
+            System.err.println("Ocurrio un error: " + ex.getMessage());
+        }
+        return resultado;
+    }
     
 }
