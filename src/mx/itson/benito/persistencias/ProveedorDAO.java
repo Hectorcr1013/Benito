@@ -21,7 +21,7 @@ public class ProveedorDAO {
     
     /**
      * 
-     * @return 
+     * @return proveedores  
      */
     public static List<Proveedor> obtenerTodos(){
         List<Proveedor> proveedores = new ArrayList<>();

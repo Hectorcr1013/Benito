@@ -40,21 +40,21 @@ public class OrdenCompraDAO {
     
     /**
      * 
-     * @param proveedores
+     * @param proveedor
      * @param folio
      * @param articulos
      * @param fecha
      * @param cantidad
      * @return 
      */
-    public static boolean guardar(List<Proveedor> proveedores, String folio, List<Articulo> articulos, Date fecha, int cantidad) {
+    public static boolean guardar(List<Proveedor> proveedor, String folio, List<Articulo> articulos, Date fecha, int cantidad) {
         boolean resultado = false;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
 
             OrdenCompra c = new OrdenCompra();
-            c.setProveedores(proveedores);
+            c.setProveedores(proveedor);
             c.setFolio(folio);
             c.setArticulos(articulos);
             c.setFecha(fecha);
@@ -90,14 +90,14 @@ public class OrdenCompraDAO {
     /**
      * 
      * @param id
-     * @param proveedores
+     * @param proveedor
      * @param folio
      * @param articulos
      * @param fecha
      * @param cantidad
      * @return 
      */
-    public static boolean editar(int id, List<Proveedor> proveedores, String folio, List<Articulo> articulos, Date fecha, int cantidad){
+    public static boolean editar(int id, List<Proveedor> proveedor, String folio, List<Articulo> articulos, Date fecha, int cantidad){
         boolean resultado = false;
         try {
             Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -105,7 +105,7 @@ public class OrdenCompraDAO {
             
             OrdenCompra compra = obtenerPorId(id);
             if(compra != null){
-                compra.setProveedores(proveedores);
+                compra.setProveedores(proveedor);
                 compra.setFolio(folio);
                 compra.setArticulos(articulos);
                 compra.setFecha(fecha);

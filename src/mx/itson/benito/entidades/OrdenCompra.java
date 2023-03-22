@@ -37,7 +37,7 @@ public class OrdenCompra {
     private Estado estado;
     @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "idProveedor")
-    private List<Proveedor> proveedores;
+    private List<Proveedor> proveedor;
     private String folio;
     private int cantidad;
     
@@ -140,17 +140,17 @@ public class OrdenCompra {
     }
 
     /**
-     * @return the proveedores
+     * @return the proveedor
      */
     public List<Proveedor> getProveedores() {
-        return proveedores;
+        return proveedor;
     }
 
     /**
-     * @param proveedores the proveedores to set
+     * @param proveedor the proveedor to set
      */
-    public void setProveedores(List<Proveedor> proveedores) {
-        this.proveedores = proveedores;
+    public void setProveedores(List<Proveedor> proveedor) {
+        this.proveedor = proveedor;
     }
 
     /**

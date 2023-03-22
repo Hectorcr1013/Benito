@@ -22,26 +22,25 @@ public class Articulo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "idProveedor")
-    private Proveedor proveedores;
+    private Proveedor proveedor;
     private double precio;
     private String nombre;
     private String clave;
     
     /**
-     * @return the proveedores
+     * @return the proveedor
      */
     public Proveedor getProveedores() {
-        return proveedores;
+        return proveedor;
     }
 
     /**
-     * @param proveedores the proveedores to set
+     * @param proveedor the proveedor to set
      */
-    public void setProveedores(Proveedor proveedores) {
-        this.proveedores = proveedores;
+    public void setProveedores(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
     
     /**

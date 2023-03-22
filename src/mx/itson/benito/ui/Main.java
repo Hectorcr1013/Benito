@@ -4,7 +4,7 @@
  */
 package mx.itson.benito.ui;
 
-import mx.itson.benito.persistencias.RelacionDAO;
+import mx.itson.benito.persistencias.*;
 
 /**
  *
@@ -14,7 +14,7 @@ public class Main {
     
     public static void main(String[] args) {
         
-        RelacionDAO.obtenerTodos(); 
+        ArticuloDAO.obtenerPorId(1);
     }
     
 }
