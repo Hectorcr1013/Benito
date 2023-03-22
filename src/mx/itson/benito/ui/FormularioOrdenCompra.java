@@ -4,13 +4,13 @@
  */
 package mx.itson.benito.ui;
 
+import java.awt.Frame;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 import mx.itson.benito.entidades.*;
-import mx.itson.benito.enumeradores.Estado;
 import mx.itson.benito.persistencias.ArticuloDAO;
 import mx.itson.benito.persistencias.OrdenCompraDAO;
 import mx.itson.benito.persistencias.ProveedorDAO;
@@ -25,7 +25,7 @@ public class FormularioOrdenCompra extends javax.swing.JDialog {
     /**
      * Creates new form FormularioOrdenCompra
      */
-    public FormularioOrdenCompra(java.awt.Frame parent, boolean modal) {
+    public FormularioOrdenCompra(Frame parent, boolean modal, int id) {
         super(parent, modal);
         initComponents();
 
@@ -240,7 +240,7 @@ public class FormularioOrdenCompra extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FormularioOrdenCompra dialog = new FormularioOrdenCompra(new javax.swing.JFrame(), true);
+                FormularioOrdenCompra dialog = new FormularioOrdenCompra(new javax.swing.JFrame(), true, 0);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

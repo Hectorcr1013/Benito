@@ -4,6 +4,7 @@
  */
 package mx.itson.benito.ui;
 
+import java.awt.Frame;
 import java.util.List;
 import javax.swing.JOptionPane;
 import mx.itson.benito.entidades.Articulo;
@@ -22,7 +23,7 @@ public class FormularioProveedor extends javax.swing.JDialog {
     /**
      * Creates new form FormularioProveedor
      */
-    public FormularioProveedor(java.awt.Frame parent, boolean modal) {
+    public FormularioProveedor(Frame parent, boolean modal, int id) {
         super(parent, modal);
         initComponents();
         
@@ -252,7 +253,7 @@ public class FormularioProveedor extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FormularioProveedor dialog = new FormularioProveedor(new javax.swing.JFrame(), true);
+                FormularioProveedor dialog = new FormularioProveedor(new javax.swing.JFrame(), true, 0);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

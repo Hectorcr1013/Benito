@@ -4,6 +4,11 @@
  */
 package mx.itson.benito.ui;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import mx.itson.benito.entidades.Articulo;
+import mx.itson.benito.persistencias.ArticuloDAO;
+
 /**
  *
  * @author Hector
@@ -27,123 +32,193 @@ public class ListaArticulo extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        btnEliminar = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        btnEditar = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblArticulos = new javax.swing.JTable();
+        btnAgregar = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        btnGuardar.setBackground(new java.awt.Color(153, 153, 153));
-        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnGuardarMouseClicked(evt);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Guardar");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout btnGuardarLayout = new javax.swing.GroupLayout(btnGuardar);
-        btnGuardar.setLayout(btnGuardarLayout);
-        btnGuardarLayout.setHorizontalGroup(
-            btnGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-        );
-        btnGuardarLayout.setVerticalGroup(
-            btnGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
-        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        btnEliminar.setBackground(new java.awt.Color(153, 153, 153));
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Eliminar");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout btnEliminarLayout = new javax.swing.GroupLayout(btnEliminar);
+        btnEliminar.setLayout(btnEliminarLayout);
+        btnEliminarLayout.setHorizontalGroup(
+            btnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        btnEliminarLayout.setVerticalGroup(
+            btnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        jPanel4.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 170, 120, 50));
+
+        btnEditar.setBackground(new java.awt.Color(153, 153, 153));
+        btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarMouseClicked(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Editar");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout btnEditarLayout = new javax.swing.GroupLayout(btnEditar);
+        btnEditar.setLayout(btnEditarLayout);
+        btnEditarLayout.setHorizontalGroup(
+            btnEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        btnEditarLayout.setVerticalGroup(
+            btnEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(642, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 250, 120, 50));
+
+        tblArticulos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "id", "Clave", "Nombre", "Precio"
+            }
+        ));
+        jScrollPane1.setViewportView(tblArticulos);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 770, -1));
+
+        btnAgregar.setBackground(new java.awt.Color(153, 153, 153));
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Agregar");
+
+        javax.swing.GroupLayout btnAgregarLayout = new javax.swing.GroupLayout(btnAgregar);
+        btnAgregar.setLayout(btnAgregarLayout);
+        btnAgregarLayout.setHorizontalGroup(
+            btnAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(384, Short.MAX_VALUE))
+        btnAgregarLayout.setVerticalGroup(
+            btnAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
+
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 330, 120, 50));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Articulos");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 410, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
-
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       
+        cargarTabla();
         
-    }//GEN-LAST:event_btnGuardarMouseClicked
+        tblArticulos.removeColumn(tblArticulos.getColumnModel().getColumn(0));
+        
+    }//GEN-LAST:event_formWindowOpened
 
+    private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
+        
+        FormularioArticulo formulario = new FormularioArticulo(this, true, 0);
+        formulario.setVisible(true);
+        
+        cargarTabla();
+        
+    }//GEN-LAST:event_btnAgregarMouseClicked
+
+    private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
+        
+        int renglon = tblArticulos.getSelectedRow();
+        int id = Integer.parseInt(tblArticulos.getModel().getValueAt(renglon, 0).toString());
+
+        FormularioArticulo formulario = new FormularioArticulo(this, true, id);
+        formulario.setVisible(true);
+
+        cargarTabla();
+        
+    }//GEN-LAST:event_btnEditarMouseClicked
+
+    private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
+        
+        int renglon = tblArticulos.getSelectedRow();
+        int id = Integer.parseInt(tblArticulos.getModel().getValueAt(renglon, 0).toString());
+
+        ArticuloDAO.eliminar(id);
+        cargarTabla();
+        
+    }//GEN-LAST:event_btnEliminarMouseClicked
+
+    /**
+     * 
+     */
+    public void cargarTabla() {
+        List<Articulo> articulo = ArticuloDAO.obtenerTodos();
+        DefaultTableModel model = (DefaultTableModel) tblArticulos.getModel();
+        model.setRowCount(0);
+        for (Articulo a : articulo) {
+            model.addRow(new Object[]{
+                a.getId(),
+                a.getClave(),
+                a.getNombre(),
+                a.getPrecio(),
+                a.getProveedores()
+            });
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -180,12 +255,15 @@ public class ListaArticulo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel btnGuardar;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel btnAgregar;
+    private javax.swing.JPanel btnEditar;
+    private javax.swing.JPanel btnEliminar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblArticulos;
     // End of variables declaration//GEN-END:variables
 }

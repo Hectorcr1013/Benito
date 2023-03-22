@@ -54,7 +54,7 @@ public class OrdenCompraDAO {
             session.beginTransaction();
 
             OrdenCompra c = new OrdenCompra();
-            c.setProveedores(proveedor);
+            c.setProveedor(proveedor);
             c.setFolio(folio);
             c.setArticulos(articulos);
             c.setFecha(fecha);
@@ -105,7 +105,7 @@ public class OrdenCompraDAO {
             
             OrdenCompra c = obtenerPorId(id);
             if(c != null){
-                c.setProveedores(proveedor);
+                c.setProveedor(proveedor);
                 c.setFolio(folio);
                 c.setArticulos(articulos);
                 c.setFecha(fecha);

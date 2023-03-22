@@ -142,14 +142,14 @@ public class OrdenCompra {
     /**
      * @return the proveedor
      */
-    public List<Proveedor> getProveedores() {
+    public List<Proveedor> getProveedor() {
         return proveedor;
     }
 
     /**
      * @param proveedor the proveedor to set
      */
-    public void setProveedores(List<Proveedor> proveedor) {
+    public void setProveedor(List<Proveedor> proveedor) {
         this.proveedor = proveedor;
     }
 
