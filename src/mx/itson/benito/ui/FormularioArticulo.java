@@ -50,7 +50,7 @@ public class FormularioArticulo extends javax.swing.JDialog {
         cbxProveedor.removeAllItems();
         
         for(Proveedor p: proveedores){
-            cbxProveedor.addItem(p.getNombre());
+            cbxProveedor.addItem(p);
         }
     }
 
@@ -78,10 +78,6 @@ public class FormularioArticulo extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -102,6 +98,7 @@ public class FormularioArticulo extends javax.swing.JDialog {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 103, 76, 29));
 
         txfNombre.setBackground(new java.awt.Color(255, 255, 255));
+        txfNombre.setForeground(new java.awt.Color(0, 0, 0));
         txfNombre.setBorder(null);
         txfNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txfNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -115,27 +112,29 @@ public class FormularioArticulo extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Precio:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 150, 80, 29));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 80, 29));
 
         txfPrecio.setBackground(new java.awt.Color(255, 255, 255));
+        txfPrecio.setForeground(new java.awt.Color(0, 0, 0));
         txfPrecio.setBorder(null);
         txfPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txfPrecioActionPerformed(evt);
             }
         });
-        jPanel1.add(txfPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 226, 29));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 178, 230, 10));
+        jPanel1.add(txfPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 226, 29));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 230, 10));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Clave:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 70, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 70, 30));
 
         txfClave.setBackground(new java.awt.Color(255, 255, 255));
+        txfClave.setForeground(new java.awt.Color(0, 0, 0));
         txfClave.setBorder(null);
-        jPanel1.add(txfClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 206, 224, 30));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 235, 230, 10));
+        jPanel1.add(txfClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 224, 30));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 230, 10));
 
         cbxProveedor.setBorder(null);
         cbxProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -143,12 +142,12 @@ public class FormularioArticulo extends javax.swing.JDialog {
                 cbxProveedorActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 282, 230, 30));
+        jPanel1.add(cbxProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 230, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Proveedor:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 70, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 70, 30));
 
         btnGuardar.setBackground(new java.awt.Color(153, 153, 153));
         btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -161,6 +160,7 @@ public class FormularioArticulo extends javax.swing.JDialog {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Guardar");
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout btnGuardarLayout = new javax.swing.GroupLayout(btnGuardar);
         btnGuardar.setLayout(btnGuardarLayout);
@@ -173,47 +173,7 @@ public class FormularioArticulo extends javax.swing.JDialog {
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 120, 50));
-
-        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Eliminar");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 120, 50));
-
-        jPanel4.setBackground(new java.awt.Color(153, 153, 153));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Editar");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 120, 50));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, 120, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,7 +209,7 @@ public class FormularioArticulo extends javax.swing.JDialog {
             String nombre = txfNombre.getText();
             double precio = Double.parseDouble(txfPrecio.getText());
             Proveedor proveedor = (Proveedor)cbxProveedor.getSelectedItem();
-            System.out.println("El conductor seleccionado es: " + proveedor.getId());
+            System.out.println("El proveedor seleccionado es: " + proveedor.getId());
 
             boolean resultado = this.id == 0 ?
 
@@ -311,18 +271,14 @@ public class FormularioArticulo extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnGuardar;
-    private javax.swing.JComboBox<String> cbxProveedor;
+    private javax.swing.JComboBox<Proveedor> cbxProveedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

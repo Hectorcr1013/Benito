@@ -14,7 +14,7 @@ public class Main {
     
     public static void main(String[] args) {
         
-        ArticuloDAO.obtenerPorId(1);
+        ArticuloDAO.obtenerTodos();
     }
     
 }

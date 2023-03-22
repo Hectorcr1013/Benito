@@ -45,9 +45,11 @@ public class OrdenCompraDAO {
      * @param articulos
      * @param fecha
      * @param cantidad
+     * @param subtotal
+     * @param total
      * @return 
      */
-    public static boolean guardar(List<Proveedor> proveedor, String folio, List<Articulo> articulos, Date fecha, int cantidad) {
+    public static boolean guardar(List<Proveedor> proveedor, String folio, List<Articulo> articulos, Date fecha, int cantidad, double subtotal, double total) {
         boolean resultado = false;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -59,6 +61,8 @@ public class OrdenCompraDAO {
             c.setArticulos(articulos);
             c.setFecha(fecha);
             c.setCantidad(cantidad);
+            c.setSubtotal(subtotal);
+            c.setTotal(total);
 
             session.save(c);
 
@@ -97,21 +101,23 @@ public class OrdenCompraDAO {
      * @param cantidad
      * @return 
      */
-    public static boolean editar(int id, List<Proveedor> proveedor, String folio, List<Articulo> articulos, Date fecha, int cantidad){
+    public static boolean editar(int id, List<Proveedor> proveedor, String folio, List<Articulo> articulos, Date fecha, int cantidad, double subtotal, double total){
         boolean resultado = false;
         try {
             Session session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.beginTransaction();
             
-            OrdenCompra compra = obtenerPorId(id);
-            if(compra != null){
-                compra.setProveedores(proveedor);
-                compra.setFolio(folio);
-                compra.setArticulos(articulos);
-                compra.setFecha(fecha);
-                compra.setCantidad(cantidad);
+            OrdenCompra c = obtenerPorId(id);
+            if(c != null){
+                c.setProveedores(proveedor);
+                c.setFolio(folio);
+                c.setArticulos(articulos);
+                c.setFecha(fecha);
+                c.setCantidad(cantidad);
+                c.setSubtotal(subtotal);
+                c.setTotal(total);
                 
-                session.saveOrUpdate(compra);              
+                session.saveOrUpdate(c);              
                 session.getTransaction().commit();
                 resultado = true;
             }

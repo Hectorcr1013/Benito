@@ -4,6 +4,7 @@
  */
 package mx.itson.benito.entidades;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ import javax.persistence.ManyToMany;
  * @author Hector
  */
 @Entity
-public class Proveedor {
+public class Proveedor{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

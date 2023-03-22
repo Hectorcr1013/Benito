@@ -4,18 +4,48 @@
  */
 package mx.itson.benito.ui;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import javax.swing.JOptionPane;
+import mx.itson.benito.entidades.*;
+import mx.itson.benito.enumeradores.Estado;
+import mx.itson.benito.persistencias.ArticuloDAO;
+import mx.itson.benito.persistencias.OrdenCompraDAO;
+import mx.itson.benito.persistencias.ProveedorDAO;
+
 /**
  *
  * @author Hector
  */
 public class FormularioOrdenCompra extends javax.swing.JDialog {
 
+    int id = 0;
     /**
      * Creates new form FormularioOrdenCompra
      */
     public FormularioOrdenCompra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        cargarProveedores();
+        cargarArticulos();
+        
+    }
+    
+    public void cargarProveedores() {
+        List<Proveedor> proveedores = ProveedorDAO.obtenerTodos();
+        for (Proveedor p : proveedores) {
+            cbxProveedor.addItem(p);
+        }
+    }
+    
+    public void cargarArticulos() {
+        List<Articulo> articulos = ArticuloDAO.obtenerTodos();
+        for (Articulo a : articulos) {
+            cbxArticulo.addItem(a);
+        }
     }
 
     /**
@@ -29,19 +59,138 @@ public class FormularioOrdenCompra extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txfFolio = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        txfFecha = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        cbxArticulo = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        cbxProveedor = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        cbxEstado = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        lblSubtotal = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        btnGuardar = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        spnCantidad = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(412, 597));
+        setPreferredSize(new java.awt.Dimension(412, 730));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMinimumSize(new java.awt.Dimension(412, 597));
+        jPanel1.setMinimumSize(new java.awt.Dimension(412, 730));
+        jPanel1.setPreferredSize(new java.awt.Dimension(412, 730));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Orden de compra");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 424, 36));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 36));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Folio:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 60, 30));
+
+        txfFolio.setBackground(new java.awt.Color(255, 255, 255));
+        txfFolio.setForeground(new java.awt.Color(0, 0, 0));
+        txfFolio.setBorder(null);
+        jPanel1.add(txfFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 230, 30));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 230, 10));
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Fecha:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 60, 30));
+
+        txfFecha.setBackground(new java.awt.Color(255, 255, 255));
+        txfFecha.setForeground(new java.awt.Color(0, 0, 0));
+        txfFecha.setBorder(null);
+        jPanel1.add(txfFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 230, 30));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 230, 10));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Articulo:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 60, 30));
+
+        cbxArticulo.setBorder(null);
+        jPanel1.add(cbxArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 252, 230, 30));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Cantidad:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 60, 30));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Proveedor:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 70, 30));
+
+        jPanel1.add(cbxProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, 230, 30));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Estado:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, 70, 30));
+
+        cbxEstado.setToolTipText("");
+        jPanel1.add(cbxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 230, 30));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Subtotal:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 70, 30));
+
+        lblSubtotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblSubtotal.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(lblSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 560, 90, 30));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Total:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 560, 50, 30));
+
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 560, 100, 30));
+
+        btnGuardar.setBackground(new java.awt.Color(153, 153, 153));
+        btnGuardar.setForeground(new java.awt.Color(153, 153, 153));
+        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseClicked(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Guardar");
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout btnGuardarLayout = new javax.swing.GroupLayout(btnGuardar);
+        btnGuardar.setLayout(btnGuardarLayout);
+        btnGuardarLayout.setHorizontalGroup(
+            btnGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+        );
+        btnGuardarLayout.setVerticalGroup(
+            btnGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 640, 120, 50));
+        jPanel1.add(spnCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 230, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -56,6 +205,33 @@ public class FormularioOrdenCompra extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
+       
+        try {
+            List<Proveedor> proveedor = (List<Proveedor>)cbxProveedor.getSelectedItem();
+            String folio = txfFolio.getText();
+            List<Articulo> articulo =(List<Articulo>) cbxArticulo.getSelectedItem();
+            Date fecha = new SimpleDateFormat("yyyy-MM-d", Locale.ENGLISH).parse(txfFecha.getText());
+            int cantidad = (int) spnCantidad.getValue();
+            double subtotal = Double.parseDouble(lblSubtotal.getText());
+            double total = Double.parseDouble(lblTotal.getText());
+            
+            boolean resultado = this.id == 0 ?
+            
+            OrdenCompraDAO.guardar(proveedor, folio, articulo, fecha, cantidad, subtotal, total):
+            OrdenCompraDAO.editar(id, proveedor, folio, articulo, fecha, cantidad, subtotal, total);
+            
+        if(resultado){
+            JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro guardado", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            }else
+            JOptionPane.showMessageDialog(this, "El registro se edito con exito", "Registro guardado", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btnGuardarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -100,7 +276,27 @@ public class FormularioOrdenCompra extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel btnGuardar;
+    private javax.swing.JComboBox<Articulo> cbxArticulo;
+    private javax.swing.JComboBox<Estado> cbxEstado;
+    private javax.swing.JComboBox<Proveedor> cbxProveedor;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblSubtotal;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JSpinner spnCantidad;
+    private javax.swing.JTextField txfFecha;
+    private javax.swing.JTextField txfFolio;
     // End of variables declaration//GEN-END:variables
 }
