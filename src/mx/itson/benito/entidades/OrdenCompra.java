@@ -36,7 +36,7 @@ public class OrdenCompra {
     private List<Articulo> articulos;
     private Estado estado;
     @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "idProveedores")
+    @JoinColumn(name = "idProveedor")
     private List<Proveedor> proveedores;
     private String folio;
     
