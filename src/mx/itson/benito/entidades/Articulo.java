@@ -31,7 +31,7 @@ public class Articulo {
     @ManyToMany (cascade = CascadeType.MERGE)
     @JoinTable(name = "rel_articulo_proveedor",
             joinColumns = {@JoinColumn(name = "idArticulo")},
-            inverseJoinColumns = {@JoinColumn(name = "idProveedor0")})
+            inverseJoinColumns = {@JoinColumn(name = "idProveedor")})
     private List<Proveedor> proveedores;
     private double precio;
     private String nombre;

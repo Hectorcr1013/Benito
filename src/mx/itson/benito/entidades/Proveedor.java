@@ -25,6 +25,7 @@ public class Proveedor {
     private String telefono;
     private String correo;
     
+    
     /**
      * @return the id
      */
