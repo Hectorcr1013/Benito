@@ -43,6 +43,9 @@ public class FormularioProveedor extends javax.swing.JDialog {
         cargarArticulos();
     }
     
+    /**
+     * carga los articulos al combo box
+     */
     public void cargarArticulos() {
         List<Articulo> articulos = ArticuloDAO.obtenerTodos();
         for (Articulo a : articulos) {

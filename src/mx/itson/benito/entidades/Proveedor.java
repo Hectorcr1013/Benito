@@ -15,7 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 /**
- *
+ * En esta clase se asignaran los atributos a los proveedores
  * @author Hector
  */
 @Entity

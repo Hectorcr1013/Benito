@@ -168,7 +168,7 @@ public class ListaProveedor extends javax.swing.JFrame {
         int id = Integer.parseInt(tblProveedor.getModel().getValueAt(renglon, 0).toString());
 
         ProveedorDAO.eliminar(id);
-        cargar();
+        cargarTabla();
     }//GEN-LAST:event_btnEliminarMouseClicked
 
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
@@ -179,7 +179,7 @@ public class ListaProveedor extends javax.swing.JFrame {
         FormularioProveedor formulario = new FormularioProveedor(this, true, id);
         formulario.setVisible(true);
 
-        cargar();
+        cargarTabla();
     }//GEN-LAST:event_btnEditarMouseClicked
 
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
@@ -187,18 +187,21 @@ public class ListaProveedor extends javax.swing.JFrame {
         FormularioProveedor formulario = new FormularioProveedor(this, true, 0);
         formulario.setVisible(true);
 
-        cargar();
+        cargarTabla();
     }//GEN-LAST:event_btnAgregarMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
-        cargar();
+        cargarTabla();
 
         tblProveedor.removeColumn(tblProveedor.getColumnModel().getColumn(0));
         
     }//GEN-LAST:event_formWindowOpened
 
-    private void cargar() {
+    /**
+     * Carga los datos de la base de datos a la tabla
+     */
+    private void cargarTabla() {
         List<Proveedor> proveedor = ProveedorDAO.obtenerTodos();
         DefaultTableModel model = (DefaultTableModel) tblProveedor.getModel();
         model.setRowCount(0);

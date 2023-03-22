@@ -14,14 +14,15 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
- *
+ * Esta clase se guardan los metodos que se usan para el enlace entre
+ * hibernate y mysql
  * @author Hector
  */
 public class ArticuloDAO {
     
     /**
-     * 
-     * @return 
+     * En este metodo se obtiene la lista de articulos
+     * @return articulos
      */
     public static List<Articulo> obtenerTodos(){
         List<Articulo> articulos = new ArrayList<>();
@@ -39,9 +40,9 @@ public class ArticuloDAO {
     }
     
     /**
-     * 
-     * @param id
-     * @return 
+     * En este metodo se obtiene el id de un articulo
+     * @param id El id de un articulo
+     * @return articulo
      */
     public static Articulo obtenerPorId(int id){
         Articulo articulo = null;
@@ -55,12 +56,12 @@ public class ArticuloDAO {
     }
     
     /**
-     * 
-     * @param clave
-     * @param nombre
-     * @param precio
-     * @param proveedor
-     * @return 
+     * Guarda en la base de datos un registro de un articulo
+     * @param clave La clave del articulo
+     * @param nombre El nombre del articulo
+     * @param precio El precio del articulo
+     * @param proveedor El proveedor del articulo
+     * @return resultado
      */
     public static boolean guardar(String clave, String nombre, double precio, Proveedor proveedor){
         boolean resultado = false;
@@ -86,13 +87,13 @@ public class ArticuloDAO {
     }
     
     /**
-     * 
-     * @param id
-     * @param clave
-     * @param nombre
-     * @param precio
-     * @param proveedor
-     * @return 
+     * Se edita en la base de datos un articulo
+     * @param id El id del articulo
+     * @param clave La clave del articulo
+     * @param nombre El nombre del articulo
+     * @param precio El precio del articulo
+     * @param proveedor El proveedor del articulo
+     * @return resultado
      */
     public static boolean editar(int id, String clave, String nombre, double precio, Proveedor proveedor){
         boolean resultado = false;
@@ -118,9 +119,9 @@ public class ArticuloDAO {
     }
     
     /**
-     * 
-     * @param id
-     * @return 
+     * Elimina de la base de datos un registro de un articulo
+     * @param id El id del articulo
+     * @return resultado
      */
     public static boolean eliminar(int id){
         boolean resultado = false;
@@ -141,23 +142,6 @@ public class ArticuloDAO {
             System.err.println("Ocurrio un error: " + ex.getMessage());
         }
         return resultado;
-    }
-    
-    /**
-     * 
-     * @param subtotal
-     * @return 
-     */
-    public static double sumarPrecio(Articulo subtotal) {
-        double total = 0;
-
-        Articulo articulo = subtotal;
-            if(articulo != null){
-                articulo.setPrecio(total);
-            }
-                total += subtotal.getPrecio();
-            
-        return total;
     }
     
 }

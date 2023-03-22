@@ -34,6 +34,9 @@ public class FormularioOrdenCompra extends javax.swing.JDialog {
         
     }
     
+    /**
+     * carga los proveedores al combo box
+     */
     public void cargarProveedores() {
         List<Proveedor> proveedores = ProveedorDAO.obtenerTodos();
         for (Proveedor p : proveedores) {
@@ -41,6 +44,9 @@ public class FormularioOrdenCompra extends javax.swing.JDialog {
         }
     }
     
+    /**
+     * carga los articulos al combo box
+     */
     public void cargarArticulos() {
         List<Articulo> articulos = ArticuloDAO.obtenerTodos();
         for (Articulo a : articulos) {

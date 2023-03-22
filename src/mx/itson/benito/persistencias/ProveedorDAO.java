@@ -14,13 +14,14 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
- *
+ * Esta clase se guardan los metodos que se usan para el enlace entre
+ * hibernate y mysql
  * @author Hector
  */
 public class ProveedorDAO {
     
     /**
-     * 
+     * En este metodo se obtiene la lista de los proveedores
      * @return proveedores  
      */
     public static List<Proveedor> obtenerTodos(){
@@ -39,13 +40,13 @@ public class ProveedorDAO {
     }
     
     /**
-     * 
-     * @param clave
-     * @param nombre
-     * @param direccion
-     * @param telefono
-     * @param correo
-     * @param articulos
+     * Guarda en la base de datos un registro de un proveedor
+     * @param clave La clave del proveedor
+     * @param nombre El nombre del proveedor
+     * @param direccion La direccion del proveedor
+     * @param telefono El telefono del proveedor
+     * @param correo El correo del proveedor
+     * @param articulos Los articulos del proveedor
      * @return 
      */
     public static boolean guardar(String clave, String nombre, String direccion, String telefono, String correo, List<Articulo> articulos){
@@ -74,9 +75,9 @@ public class ProveedorDAO {
     }
     
     /**
-     * 
-     * @param id
-     * @return 
+     * Se obtiene un proveedor por medio de su id
+     * @param id El id del proveedor
+     * @return proveedor
      */
     public static Proveedor obtenerPorId(int id){
         Proveedor proveedor = null;
@@ -90,15 +91,15 @@ public class ProveedorDAO {
     }
     
     /**
-     * 
-     * @param id
-     * @param clave
-     * @param nombre
-     * @param direccion
-     * @param telefono
-     * @param correo
-     * @param articulos
-     * @return 
+     * Se edita de la base de datos un registro de un proveedor
+     * @param id El id del proveedor
+     * @param clave La clave del proveedor
+     * @param nombre El nombre del proveedor
+     * @param direccion La direccion del proveedor
+     * @param telefono El telefono del proveedor
+     * @param correo El correo del proveedor
+     * @param articulos Los articulos del proveedor
+     * @return resultado
      */
     public static boolean editar(int id, String clave, String nombre, String direccion, String telefono, String correo, List<Articulo> articulos){
         boolean resultado = false;
@@ -126,9 +127,9 @@ public class ProveedorDAO {
     }
     
     /**
-     * 
-     * @param id
-     * @return 
+     * Elimina de la base un registro de un proveedor
+     * @param id El id del proveedor
+     * @return resultado
      */
     public static boolean eliminar(int id){
         boolean resultado = false;

@@ -5,7 +5,7 @@
 package mx.itson.benito.enumeradores;
 
 /**
- *
+ * Esta clase son para asignar los enumeradores
  * @author Hector
  */
 public enum Estado {

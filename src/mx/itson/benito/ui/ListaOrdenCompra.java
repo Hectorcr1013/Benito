@@ -176,7 +176,7 @@ public class ListaOrdenCompra extends javax.swing.JFrame {
         int id = Integer.parseInt(tblOrden.getModel().getValueAt(renglon, 0).toString());
 
         OrdenCompraDAO.eliminar(id);
-        cargar();
+        cargarTabla();
 
     }//GEN-LAST:event_btnEliminarMouseClicked
 
@@ -187,7 +187,7 @@ public class ListaOrdenCompra extends javax.swing.JFrame {
 
         FormularioOrdenCompra formulario = new FormularioOrdenCompra(this, true, id);
         formulario.setVisible(true);
-        cargar();
+        cargarTabla();
 
     }//GEN-LAST:event_btnEditarMouseClicked
 
@@ -196,21 +196,21 @@ public class ListaOrdenCompra extends javax.swing.JFrame {
         FormularioOrdenCompra formulario = new FormularioOrdenCompra(this, true, 0);
         formulario.setVisible(true);
 
-        cargar();
+        cargarTabla();
     }//GEN-LAST:event_btnAgregarMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         
-        cargar();
+        cargarTabla();
         
         tblOrden.removeColumn(tblOrden.getColumnModel().getColumn(0));
         
     }//GEN-LAST:event_formWindowOpened
 
     /**
-     * 
+     * Carga los datos de la base de datos a la tabla
      */
-     public void cargar() {
+     public void cargarTabla() {
         List<OrdenCompra> ordenCompra = OrdenCompraDAO.obtenerTodos();
         Articulo a = new Articulo();
         Proveedor p = new Proveedor();

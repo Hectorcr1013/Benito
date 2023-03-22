@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 /**
- *
+ * En esta clase se asignarán los atributos a los articulos
  * @author Hector
  */
 @Entity

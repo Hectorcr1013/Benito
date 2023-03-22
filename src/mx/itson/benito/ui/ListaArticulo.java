@@ -202,7 +202,7 @@ public class ListaArticulo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarMouseClicked
 
     /**
-     * 
+     * Carga los datos de la base de datos a la tabla
      */
     public void cargarTabla() {
         List<Articulo> articulo = ArticuloDAO.obtenerTodos();

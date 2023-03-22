@@ -14,14 +14,15 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
- *
+ * Esta clase se guardan los metodos que se usan para el enlace entre hibernate
+ * y mysql 
  * @author Hector
  */
 public class OrdenCompraDAO {
     
     /**
-     * 
-     * @return 
+     * En este metodo se obtiene la lista de la orden de compra
+     * @return articulos
      */
     public static List<OrdenCompra> obtenerTodos() {
         List<OrdenCompra> Ordencompra = new ArrayList<>();
@@ -39,13 +40,13 @@ public class OrdenCompraDAO {
     }
     
     /**
-     * 
-     * @param proveedor
-     * @param folio
-     * @param articulos
-     * @param fecha
-     * @param cantidad
-     * @return 
+     * Guarda en la base de datos un registro de una orden de compra
+     * @param proveedor El proveedor de la orden de compra
+     * @param folio El folio de la orden de compra
+     * @param articulos El o los articulos de la orden de compra
+     * @param fecha La fecha de creacion de la orden de compra
+     * @param cantidad La cantidad de articulos de la orden de compra
+     * @return resultado
      */
     public static boolean guardar(List<Proveedor> proveedor, String folio, List<Articulo> articulos, Date fecha, int cantidad) {
         boolean resultado = false;
@@ -72,9 +73,9 @@ public class OrdenCompraDAO {
     }
 
     /**
-     * 
-     * @param id
-     * @return 
+     * Se obtiene una orden de compra por su id
+     * @param id El id de la orden de compra
+     * @return oredenCompra
      */
     public static OrdenCompra obtenerPorId(int id) {
         OrdenCompra ordenCompra = null;
@@ -88,14 +89,14 @@ public class OrdenCompraDAO {
     }
     
     /**
-     * 
-     * @param id
-     * @param proveedor
-     * @param folio
-     * @param articulos
-     * @param fecha
-     * @param cantidad
-     * @return 
+     * Se edita de la base de datos un registro de una orden de compra
+     * @param id El id de la orden de compra
+     * @param proveedor El proveedor de la orden de compra
+     * @param folio El folio de la orden de compra
+     * @param articulos El articulo de la orden de compra
+     * @param fecha La fecha de la orden de compra
+     * @param cantidad La cantidad de articulos de la orden de compra
+     * @return resultado
      */
     public static boolean editar(int id, List<Proveedor> proveedor, String folio, List<Articulo> articulos, Date fecha, int cantidad){
         boolean resultado = false;
@@ -122,9 +123,9 @@ public class OrdenCompraDAO {
     }
     
     /**
-     * 
-     * @param id
-     * @return 
+     * Elimina de la base de datos un registro de orden de compra
+     * @param id El id de la orden de compra
+     * @return resultado
      */
     public static boolean eliminar(int id){
         boolean resultado = false;

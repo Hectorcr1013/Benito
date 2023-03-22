@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 import mx.itson.benito.enumeradores.Estado;
 
 /**
- *
+ * En esta clase se asignaran los atributos a los articulos
  * @author Hector
  */
 @Entity
